@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aplicacion Web para subir y publicar fotos de los lugares que has visitado a tu perfil, con la opcion de dar likes."
+    />
+    <meta name="author" content="Mauricio Olvera" />
+    <meta
+      name="keywords"
+      content="red social, fotos, paisajes, like, viajes, aplicacion"
+    />
+    <title>Around the U.S.</title>
+    <link rel="stylesheet" href="pages/index.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body class="background">
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/Logo.svg"
+          alt="Logotipo de aplicación Around the U.S."
+          class="header__logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img
+            src="./images/profile_picture.avif"
+            alt="Foto de perfil del usuario"
+            class="profile__image"
+          />
+          <div class="profile__info">
+            <div class="profile__info-group">
+              <h1 class="profile__name">Mauricio Olvera</h1>
+              <img
+                src="./images/Edit_Button.svg"
+                alt="Icono para editar la información del perfil"
+                class="profile__edit-button"
+              />
+            </div>
+            <p class="profile__description">Aspirante a Desarrollador Web</p>
+          </div>
+          <div class="profile__add-button">
+            <img
+              src="./images/Add_Icon.svg"
+              alt="Icono para agregar elementos a la galería"
+              class="profile__add-button-icon"
+            />
+          </div>
+        </section>
+        <section class="elements"></section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2025 Around The U.S.</p>
+      </footer>
+    </div>
+    <!-- popup windows -->
+    <div class="popup" id="popup-edit-info" name="edit-info">
+      <form class="popup__form">
+        <h2 class="popup__title">Editar Perfil</h2>
+        <label class="popup__field">
+          <input
+            type="text"
+            placeholder="Nombre"
+            id="name-input"
+            class="popup__input popup__input_type_name"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="popup__error name-input-error"></span>
+        </label>
+        <label class="popup__field">
+          <input
+            type="text"
+            placeholder="Acerca de mí"
+            id="description-input"
+            class="popup__input popup__input_type_description"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <span class="popup__error description-input-error"></span>
+        </label>
+        <button type="submit" class="popup__button">Guardar</button>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button"
+        />
+      </form>
+    </div>
+    <div class="popup" id="popup-add-post" name="add-post">
+      <form class="popup__form">
+        <h2 class="popup__title">Nuevo Lugar</h2>
+        <label class="popup__field">
+          <input
+            type="text"
+            placeholder="Título"
+            id="title-input"
+            class="popup__input popup__input_type_name"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <span class="popup__error title-input-error"></span>
+        </label>
+        <label class="popup__field">
+          <input
+            type="url"
+            placeholder="Enlace a la imagen"
+            id="link-input"
+            class="popup__input popup__input_type_description"
+            required
+          />
+          <span class="popup__error link-input-error"></span>
+        </label>
+        <button type="submit" class="popup__button">Crear</button>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button"
+        />
+      </form>
+    </div>
+    <div class="popup" id="popup-full-image">
+      <div class="popup__image-container">
+        <img src="" alt="" class="popup__image" />
+        <h2 class="popup__image-title"></h2>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button popup__close-button_image"
+        />
+      </div>
+    </div>
+    <!-- Plantillas -->
+    <template id="element-template">
+      <article class="element">
+        <img src="" alt="" class="element__image" />
+        <img
+          src="./images/Trash.svg"
+          alt="Icono para eliminar post"
+          class="element__trash"
+        />
+        <div class="element__info">
+          <p class="element__name"></p>
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+    </template>
+    <!-- SCRIPT -->
+    <script type="module" src="./scripts/index.js"></script>
+  </body>
+</html>
