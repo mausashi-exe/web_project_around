@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+  height: 74px;
+  border-bottom: 1px solid #545454;
+}
+
+.header__logo {
+  width: 173px;
+  height: 33px;
+}
+
+@media screen and (max-width: 544px) {
+  .header {
+    height: 56px;
+  }
+
+  .header__logo {
+    width: 126px;
+    height: 24px;
+  }
+}
