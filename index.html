@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -29,130 +29,162 @@
         <section class="profile">
           <img
             src="./images/Mauricio_Olvera_profilePicture.avif"
-            alt="Foto de perfil del usuario"
+            alt="Foto de perfil del usuario Mauricio Olvera"
             class="profile__image"
           />
           <div class="profile__info">
             <div class="profile__info-group">
               <h1 class="profile__name">Mauricio Olvera</h1>
-              <img
-                src="./images/Edit_Button.svg"
-                alt="Icono para editar la información del perfil"
+              <button
+                type="button"
                 class="profile__edit-button"
-              />
+                aria-label="Editar perfil"
+              >
+                <img src="./images/Edit_Button.svg" alt="" />
+              </button>
             </div>
             <p class="profile__description">Aspirante a Desarrollador Web</p>
           </div>
-          <div class="profile__add-button">
+          <button
+            type="button"
+            class="profile__add-button"
+            aria-label="Añadir nueva tarjeta"
+          >
             <img
               src="./images/Add_Icon.svg"
-              alt="Icono para agregar elementos a la galería"
+              alt=""
               class="profile__add-button-icon"
             />
-          </div>
+          </button>
         </section>
-        <section class="elements"></section>
+        <section class="elements">
+          <!-- Las tarjetas se renderizarán aquí con JavaScript -->
+        </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&#169; 2025 Around The U.S.</p>
       </footer>
     </div>
-    <!-- popup windows -->
-    <div class="popup" id="popup-edit-info" name="edit-info">
-      <form class="popup__form">
-        <h2 class="popup__title">Editar Perfil</h2>
-        <label class="popup__field">
-          <input
-            type="text"
-            placeholder="Nombre"
-            id="name-input"
-            class="popup__input popup__input_type_name"
-            minlength="2"
-            maxlength="40"
-            required
-          />
-          <span class="popup__error name-input-error"></span>
-        </label>
-        <label class="popup__field">
-          <input
-            type="text"
-            placeholder="Acerca de mí"
-            id="description-input"
-            class="popup__input popup__input_type_description"
-            minlength="2"
-            maxlength="200"
-            required
-          />
-          <span class="popup__error description-input-error"></span>
-        </label>
-        <button type="submit" class="popup__button">Guardar</button>
-        <img
-          src="./images/Close_Icon.svg"
-          alt="Icono para cerrar la ventana emergente"
-          class="popup__close-button"
-        />
-      </form>
-    </div>
-    <div class="popup" id="popup-add-post" name="add-post">
-      <form class="popup__form">
-        <h2 class="popup__title">Nuevo Lugar</h2>
-        <label class="popup__field">
-          <input
-            type="text"
-            placeholder="Título"
-            id="title-input"
-            class="popup__input popup__input_type_name"
-            minlength="2"
-            maxlength="30"
-            required
-          />
-          <span class="popup__error title-input-error"></span>
-        </label>
-        <label class="popup__field">
-          <input
-            type="url"
-            placeholder="Enlace a la imagen"
-            id="link-input"
-            class="popup__input popup__input_type_description"
-            required
-          />
-          <span class="popup__error link-input-error"></span>
-        </label>
-        <button type="submit" class="popup__button">Crear</button>
-        <img
-          src="./images/Close_Icon.svg"
-          alt="Icono para cerrar la ventana emergente"
-          class="popup__close-button"
-        />
-      </form>
-    </div>
-    <div class="popup" id="popup-full-image">
-      <div class="popup__image-container">
-        <img src="" alt="" class="popup__image" />
-        <h2 class="popup__image-title"></h2>
-        <img
-          src="./images/Close_Icon.svg"
-          alt="Icono para cerrar la ventana emergente"
-          class="popup__close-button popup__close-button_image"
-        />
+
+    <!-- Popup: Editar Perfil -->
+    <div class="popup" id="popup-edit-info">
+      <div class="popup__container">
+        <form class="popup__form" name="edit-info" novalidate>
+          <h2 class="popup__title">Editar Perfil</h2>
+          <label class="popup__field">
+            <input
+              type="text"
+              placeholder="Nombre"
+              id="name-input"
+              class="popup__input popup__input_type_name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__error name-input-error"></span>
+          </label>
+          <label class="popup__field">
+            <input
+              type="text"
+              placeholder="Acerca de mí"
+              id="description-input"
+              class="popup__input popup__input_type_description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__error description-input-error"></span>
+          </label>
+          <button type="submit" class="popup__button">Guardar</button>
+          <button
+            type="button"
+            class="popup__close-button"
+            aria-label="Cerrar ventana"
+          >
+            <img src="./images/Close_Icon.svg" alt="" />
+          </button>
+        </form>
       </div>
     </div>
-    <!-- Plantillas -->
+
+    <!-- Popup: Añadir Nueva Tarjeta -->
+    <div class="popup" id="popup-add-post">
+      <div class="popup__container">
+        <form class="popup__form" name="add-post" novalidate>
+          <h2 class="popup__title">Nuevo Lugar</h2>
+          <label class="popup__field">
+            <input
+              type="text"
+              placeholder="Título"
+              id="title-input"
+              class="popup__input popup__input_type_name"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__error title-input-error"></span>
+          </label>
+          <label class="popup__field">
+            <input
+              type="url"
+              placeholder="Enlace a la imagen"
+              id="link-input"
+              class="popup__input popup__input_type_description"
+              required
+            />
+            <span class="popup__error link-input-error"></span>
+          </label>
+          <button type="submit" class="popup__button">Crear</button>
+          <button
+            type="button"
+            class="popup__close-button"
+            aria-label="Cerrar ventana"
+          >
+            <img src="./images/Close_Icon.svg" alt="" />
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popup: Imagen Ampliada -->
+    <div class="popup" id="popup-full-image">
+      <div class="popup__container popup__container_image">
+        <div class="popup__image-container">
+          <img src="" alt="" class="popup__image" />
+          <h2 class="popup__image-title"></h2>
+          <button
+            type="button"
+            class="popup__close-button popup__close-button_image"
+            aria-label="Cerrar imagen"
+          >
+            <img src="./images/Close_Icon.svg" alt="" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Template para Tarjetas -->
     <template id="element-template">
       <article class="element">
         <img src="" alt="" class="element__image" />
-        <img
-          src="./images/Trash.svg"
-          alt="Icono para eliminar post"
+        <button
+          type="button"
           class="element__trash"
-        />
+          aria-label="Eliminar tarjeta"
+        >
+          <img src="./images/Trash.svg" alt="" />
+        </button>
         <div class="element__info">
           <p class="element__name"></p>
-          <button type="button" class="element__like"></button>
+          <button
+            type="button"
+            class="element__like"
+            aria-label="Dar me gusta"
+          ></button>
         </div>
       </article>
     </template>
-    <!-- SCRIPT -->
+
     <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

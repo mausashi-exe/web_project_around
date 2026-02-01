@@ -3,18 +3,41 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { popupForms, setPopupListeners } from "./utils.js";
 
-// ----- Initial data and templates ----- //
+// ----- Constantes ----- //
+const INITIAL_CARDS_COUNT = 6;
+const MIN_NAME_LENGTH = 2;
+const MAX_NAME_LENGTH = 40;
+const MAX_TITLE_LENGTH = 30;
+const MAX_DESCRIPTION_LENGTH = 200;
+
+// ----- Datos iniciales ----- //
 const initialCards = [
   {
     name: "Welcome to Fabulous Las Vegas",
     link: "./images/Welcome_Las_Vegas.avif",
   },
-  { name: "Seattle Space Needle", link: "./images/Space_Needle.avif" },
-  { name: "Chicago Cloud Gate", link: "./images/Cloud_Gate.avif" },
-  { name: "Santa Monica Pier", link: "./images/Santa_Monica_Pier.avif" },
-  { name: "SF Golden Gate", link: "./images/Golden_Gate.avif" },
-  { name: "NY Central Park", link: "./images/Central_Park.avif" },
+  {
+    name: "Seattle Space Needle",
+    link: "./images/Space_Needle.avif",
+  },
+  {
+    name: "Chicago Cloud Gate",
+    link: "./images/Cloud_Gate.avif",
+  },
+  {
+    name: "Santa Monica Pier",
+    link: "./images/Santa_Monica_Pier.avif",
+  },
+  {
+    name: "SF Golden Gate",
+    link: "./images/Golden_Gate.avif",
+  },
+  {
+    name: "NY Central Park",
+    link: "./images/Central_Park.avif",
+  },
 ];
+
 const configFormValidation = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -23,36 +46,45 @@ const configFormValidation = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
+
+// ----- Elementos DOM ----- //
 const postsContainer = document.querySelector(".elements");
 const formValidationInstances = {};
 
-// ----- Load initial posts ----- //
+// ----- Funciones ----- //
+const clearPostsContainer = () => {
+  while (postsContainer.firstChild) {
+    postsContainer.removeChild(postsContainer.firstChild);
+  }
+};
+
 const renderInitialPosts = () => {
-  postsContainer.innerHTML = "";
+  clearPostsContainer();
 
-  initialCards.forEach((card) => {
-    const post = new Card(card, "#element-template");
-
+  initialCards.forEach((cardData) => {
+    const post = new Card(cardData, "#element-template");
     const postElement = post.generateCard();
-
     postsContainer.append(postElement);
   });
 };
-renderInitialPosts();
 
-// ----- Initialize form validation ----- //
 const initiateFormsValidation = () => {
   popupForms.forEach((popupForm) => {
     const form = new FormValidator(configFormValidation, popupForm);
-
     form.enableValidation();
     formValidationInstances[popupForm.getAttribute("id")] = form;
   });
 };
-initiateFormsValidation();
 
-// ----- Initialize event assignment for popup windows ----- //
-setPopupListeners();
+// ----- Inicialización ----- //
+const initializeApp = () => {
+  renderInitialPosts();
+  initiateFormsValidation();
+  setPopupListeners();
+};
+
+// ----- Iniciar aplicación ----- //
+document.addEventListener("DOMContentLoaded", initializeApp);
 
 // ----- Exports ----- //
 export { postsContainer, formValidationInstances };

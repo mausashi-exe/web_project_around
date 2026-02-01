@@ -1,5 +1,8 @@
+/* Importar normalize.css primero */
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts.css);
+
+/* Luego tus bloques */
 @import url(../blocks/background.css);
 @import url(../blocks/page.css);
 @import url(../blocks/header.css);
@@ -9,3 +12,11 @@
 @import url(../blocks/elements.css);
 @import url(../blocks/element.css);
 @import url(../blocks/footer.css);
+
+/* Variables CSS */
+:root {
+  --border-radius-default: 10px;
+  --transition-default: 0.3s ease;
+  --opacity-hover: 0.6;
+  --scale-hover: 1.05;
+}
