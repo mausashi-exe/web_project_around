@@ -1,16 +1,13 @@
-// ----- Imports ----- //
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { popupForms, setPopupListeners } from "./utils.js";
 
-// ----- Constantes ----- //
 const INITIAL_CARDS_COUNT = 6;
 const MIN_NAME_LENGTH = 2;
 const MAX_NAME_LENGTH = 40;
 const MAX_TITLE_LENGTH = 30;
 const MAX_DESCRIPTION_LENGTH = 200;
 
-// ----- Datos iniciales ----- //
 const initialCards = [
   {
     name: "Welcome to Fabulous Las Vegas",
@@ -47,11 +44,9 @@ const configFormValidation = {
   errorClass: "popup__error_visible",
 };
 
-// ----- Elementos DOM ----- //
 const postsContainer = document.querySelector(".elements");
 const formValidationInstances = {};
 
-// ----- Funciones ----- //
 const clearPostsContainer = () => {
   while (postsContainer.firstChild) {
     postsContainer.removeChild(postsContainer.firstChild);
@@ -76,15 +71,12 @@ const initiateFormsValidation = () => {
   });
 };
 
-// ----- Inicialización ----- //
 const initializeApp = () => {
   renderInitialPosts();
   initiateFormsValidation();
   setPopupListeners();
 };
 
-// ----- Iniciar aplicación ----- //
 document.addEventListener("DOMContentLoaded", initializeApp);
 
-// ----- Exports ----- //
 export { postsContainer, formValidationInstances };

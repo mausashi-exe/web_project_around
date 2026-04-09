@@ -1,11 +1,8 @@
-// ----- Imports ----- //
 import { Card } from "./Card.js";
 import { formValidationInstances, postsContainer } from "./index.js";
 
-// ----- Constantes ----- //
 const ESC_KEY_CODE = "Escape";
 
-// ----- Elementos DOM ----- //
 const popupAddPost = document.querySelector("#popup-add-post");
 const popupEditInfo = document.querySelector("#popup-edit-info");
 const popupFullImage = document.querySelector("#popup-full-image");
@@ -15,7 +12,6 @@ const openAddPostButton = document.querySelector(".profile__add-button");
 const openEditInfoButton = document.querySelector(".profile__edit-button");
 const openPopupButtons = [openAddPostButton, openEditInfoButton];
 
-// ----- Funciones ----- //
 const openPopup = (popupElement) => {
   popupElement.classList.add("popup_open");
   document.addEventListener("keydown", handleEscKey);
@@ -105,7 +101,6 @@ const sendPopup = (popupElement) => {
 };
 
 const setPopupListeners = () => {
-  // Abrir popups
   openPopupButtons.forEach((buttonElement) => {
     buttonElement.addEventListener("click", () => {
       if (buttonElement === openAddPostButton) {
@@ -117,7 +112,6 @@ const setPopupListeners = () => {
       }
     });
 
-    // Enter para abrir popups
     buttonElement.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -126,7 +120,6 @@ const setPopupListeners = () => {
     });
   });
 
-  // Envío de formularios
   popupForms.forEach((formElement) => {
     const form = formElement.querySelector(".popup__form");
     form.addEventListener("submit", (event) => {
@@ -134,7 +127,6 @@ const setPopupListeners = () => {
       sendPopup(formElement);
     });
 
-    // Enter para enviar formularios
     form.addEventListener("keydown", (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
         const submitButton = form.querySelector(".popup__button");
@@ -146,14 +138,12 @@ const setPopupListeners = () => {
     });
   });
 
-  // Cerrar popups con botón
   document.querySelectorAll(".popup__close-button").forEach((closeButton) => {
     closeButton.addEventListener("click", () => {
       const popup = closeButton.closest(".popup");
       closePopup(popup);
     });
 
-    // Enter para cerrar
     closeButton.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault();
@@ -162,9 +152,8 @@ const setPopupListeners = () => {
     });
   });
 
-  // Cerrar popups haciendo clic fuera
   document.querySelectorAll(".popup").forEach((popupElement) => {
-    popupElement.addEventListener("mousedown", (event) => {
+    popupElement.addEventListener("click", (event) => {
       if (event.target === popupElement) {
         closePopup(popupElement);
       }
@@ -172,5 +161,4 @@ const setPopupListeners = () => {
   });
 };
 
-// ----- Exports ----- //
-export { popupForms, openPopup, setPopupListeners };
+export { popupForms, openPopup, closePopup, setPopupListeners };
