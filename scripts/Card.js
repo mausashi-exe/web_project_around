@@ -1,15 +1,17 @@
 class Card {
   #cardData;
   #templateSelector;
+  #handleCardClick;
   #element;
   #cardImage;
   #cardTitle;
   #likeButton;
   #trashButton;
 
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this.#cardData = cardData;
     this.#templateSelector = templateSelector;
+    this.#handleCardClick = handleCardClick;
   }
 
   #getTemplate() {
@@ -30,19 +32,7 @@ class Card {
     });
 
     this.#cardImage.addEventListener("click", () => {
-      const fullImagePopup = document.querySelector("#popup-full-image");
-      const fullImage = fullImagePopup.querySelector(".popup__image");
-      const fullImageTitle = fullImagePopup.querySelector(
-        ".popup__image-title",
-      );
-
-      fullImage.src = this.#cardData.link;
-      fullImage.alt = this.#cardData.name;
-      fullImageTitle.textContent = this.#cardData.name;
-
-      import("./utils.js").then(({ openPopup }) => {
-        openPopup(fullImagePopup);
-      });
+      this.#handleCardClick(this.#cardData.name, this.#cardData.link);
     });
   }
 

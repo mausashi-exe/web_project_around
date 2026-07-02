@@ -1,12 +1,9 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { popupForms, setPopupListeners } from "./utils.js";
-
-const INITIAL_CARDS_COUNT = 6;
-const MIN_NAME_LENGTH = 2;
-const MAX_NAME_LENGTH = 40;
-const MAX_TITLE_LENGTH = 30;
-const MAX_DESCRIPTION_LENGTH = 200;
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
 
 const initialCards = [
   {
@@ -44,39 +41,75 @@ const configFormValidation = {
   errorClass: "popup__error_visible",
 };
 
-const postsContainer = document.querySelector(".elements");
-const formValidationInstances = {};
+const popupWithImage = new PopupWithImage("#popup-full-image");
+popupWithImage.setEventListeners();
 
-const clearPostsContainer = () => {
-  while (postsContainer.firstChild) {
-    postsContainer.removeChild(postsContainer.firstChild);
-  }
-};
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  descriptionSelector: ".profile__description",
+});
 
-const renderInitialPosts = () => {
-  clearPostsContainer();
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+}
 
-  initialCards.forEach((cardData) => {
-    const post = new Card(cardData, "#element-template");
-    const postElement = post.generateCard();
-    postsContainer.append(postElement);
+function createCard(cardData) {
+  const card = new Card(cardData, "#element-template", handleCardClick);
+  return card.generateCard();
+}
+
+const section = new Section(
+  {
+    items: initialCards,
+    renderer: (cardData) => {
+      const cardElement = createCard(cardData);
+      section.addItem(cardElement);
+    },
+  },
+  ".elements",
+);
+
+section.renderItems();
+
+const editPopup = new PopupWithForm("#popup-edit-info", (inputValues) => {
+  userInfo.setUserInfo({
+    name: inputValues["edit-name"],
+    description: inputValues["edit-description"],
   });
-};
+  editPopup.close();
+});
+editPopup.setEventListeners();
 
-const initiateFormsValidation = () => {
-  popupForms.forEach((popupForm) => {
-    const form = new FormValidator(configFormValidation, popupForm);
-    form.enableValidation();
-    formValidationInstances[popupForm.getAttribute("id")] = form;
+const addPopup = new PopupWithForm("#popup-add-post", (inputValues) => {
+  const newCardData = {
+    name: inputValues["add-title"],
+    link: inputValues["add-link"],
+  };
+  const cardElement = createCard(newCardData);
+  section.addItem(cardElement);
+  addPopup.close();
+});
+addPopup.setEventListeners();
+
+document
+  .querySelector(".profile__edit-button")
+  .addEventListener("click", () => {
+    const userData = userInfo.getUserInfo();
+    const nameInput = document.querySelector("#name-input");
+    const descriptionInput = document.querySelector("#description-input");
+    nameInput.value = userData.name;
+    descriptionInput.value = userData.description;
+    editPopup.open();
   });
-};
 
-const initializeApp = () => {
-  renderInitialPosts();
-  initiateFormsValidation();
-  setPopupListeners();
-};
+document.querySelector(".profile__add-button").addEventListener("click", () => {
+  addPopup.open();
+});
 
-document.addEventListener("DOMContentLoaded", initializeApp);
+const editForm = document.querySelector("#popup-edit-info .popup__form");
+const editValidator = new FormValidator(configFormValidation, editForm);
+editValidator.enableValidation();
 
-export { postsContainer, formValidationInstances };
+const addForm = document.querySelector("#popup-add-post .popup__form");
+const addValidator = new FormValidator(configFormValidation, addForm);
+addValidator.enableValidation();
