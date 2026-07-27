@@ -13,7 +13,7 @@
       content="red social, fotos, paisajes, like, viajes, aplicacion"
     />
     <title>Around the U.S.</title>
-    <link rel="stylesheet" href="pages/index.css" />
+    <link rel="stylesheet" href="page/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body class="background">
@@ -27,40 +27,28 @@
       </header>
       <main class="content">
         <section class="profile">
-          <div class="profile__avatar-container">
-            <img
-              src="./images/Mauricio_Olvera_profilePicture.avif"
-              alt="Foto de perfil del usuario"
-              class="profile__image"
-            />
-            <div class="profile__avatar-overlay">
-              <img src="./images/Edit_Icon.svg" alt="Editar avatar" />
-            </div>
+          <div class="profile__image-box">
+            <img src="" alt="" class="profile__image" />
+            <div class="profile__edit-image"></div>
           </div>
           <div class="profile__info">
             <div class="profile__info-group">
-              <h1 class="profile__name">Mauricio Olvera</h1>
-              <button
-                type="button"
+              <h1 class="profile__name"></h1>
+              <img
+                src="./images/Edit_Button.svg"
+                alt="Icono para editar la información del perfil"
                 class="profile__edit-button"
-                aria-label="Editar perfil"
-              >
-                <img src="./images/Edit_Button.svg" alt="" />
-              </button>
+              />
             </div>
-            <p class="profile__description">Aspirante a Desarrollador Web</p>
+            <p class="profile__description"></p>
           </div>
-          <button
-            type="button"
-            class="profile__add-button"
-            aria-label="Añadir nueva tarjeta"
-          >
+          <div class="profile__add-button">
             <img
               src="./images/Add_Icon.svg"
-              alt=""
+              alt="Icono para agregar elementos a la galería"
               class="profile__add-button-icon"
             />
-          </button>
+          </div>
         </section>
         <section class="elements"></section>
       </main>
@@ -69,172 +57,142 @@
       </footer>
     </div>
 
-    <div class="popup" id="popup-edit-info">
-      <div class="popup__container">
-        <form class="popup__form" name="edit-info" novalidate>
-          <h2 class="popup__title">Editar Perfil</h2>
-          <label class="popup__field">
-            <input
-              type="text"
-              placeholder="Nombre"
-              id="name-input"
-              name="edit-name"
-              class="popup__input popup__input_type_name"
-              minlength="2"
-              maxlength="40"
-              required
-            />
-            <span class="popup__error name-input-error"></span>
-          </label>
-          <label class="popup__field">
-            <input
-              type="text"
-              placeholder="Acerca de mí"
-              id="description-input"
-              name="edit-description"
-              class="popup__input popup__input_type_description"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-            <span class="popup__error description-input-error"></span>
-          </label>
-          <button type="submit" class="popup__button">Guardar</button>
-          <button
-            type="button"
-            class="popup__close-button"
-            aria-label="Cerrar ventana"
-          >
-            <img src="./images/Close_Icon.svg" alt="" />
-          </button>
-        </form>
-      </div>
+    <div class="popup" id="popup-edit-info" name="edit-info">
+      <form class="popup__form" novalidate>
+        <h2 class="popup__title">Editar Perfil</h2>
+        <label class="popup__field">
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            id="name-input"
+            class="popup__input popup__input_type_name"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="popup__error name-input-error"></span>
+        </label>
+        <label class="popup__field">
+          <input
+            type="text"
+            name="about"
+            placeholder="Acerca de mí"
+            id="description-input"
+            class="popup__input popup__input_type_description"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <span class="popup__error description-input-error"></span>
+        </label>
+        <button type="submit" class="popup__button">Guardar</button>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button"
+        />
+      </form>
     </div>
 
-    <div class="popup" id="popup-add-post">
-      <div class="popup__container">
-        <form class="popup__form" name="add-post" novalidate>
-          <h2 class="popup__title">Nuevo Lugar</h2>
-          <label class="popup__field">
-            <input
-              type="text"
-              placeholder="Título"
-              id="title-input"
-              name="add-title"
-              class="popup__input popup__input_type_name"
-              minlength="2"
-              maxlength="30"
-              required
-            />
-            <span class="popup__error title-input-error"></span>
-          </label>
-          <label class="popup__field">
-            <input
-              type="url"
-              placeholder="Enlace a la imagen"
-              id="link-input"
-              name="add-link"
-              class="popup__input popup__input_type_description"
-              required
-            />
-            <span class="popup__error link-input-error"></span>
-          </label>
-          <button type="submit" class="popup__button">Crear</button>
-          <button
-            type="button"
-            class="popup__close-button"
-            aria-label="Cerrar ventana"
-          >
-            <img src="./images/Close_Icon.svg" alt="" />
-          </button>
-        </form>
-      </div>
+    <div class="popup" id="popup-profile-picture" name="edit-profile-picture">
+      <form class="popup__form" novalidate>
+        <h2 class="popup__title">Cambiar Foto de Perfil</h2>
+        <label class="popup__field">
+          <input
+            type="url"
+            name="avatar"
+            placeholder="Enlace a la imagen"
+            id="profile-picture-input"
+            class="popup__input popup__input_type_url"
+            required
+          />
+          <span class="popup__error profile-picture-input-error"></span>
+        </label>
+        <button type="submit" class="popup__button">Guardar</button>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button"
+        />
+      </form>
+    </div>
+
+    <div class="popup" id="popup-add-post" name="add-post">
+      <form class="popup__form" novalidate>
+        <h2 class="popup__title">Nuevo Lugar</h2>
+        <label class="popup__field">
+          <input
+            type="text"
+            name="name"
+            placeholder="Título"
+            id="title-input"
+            class="popup__input popup__input_type_name"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <span class="popup__error title-input-error"></span>
+        </label>
+        <label class="popup__field">
+          <input
+            type="url"
+            name="link"
+            placeholder="Enlace a la imagen"
+            id="link-input"
+            class="popup__input popup__input_type_url"
+            required
+          />
+          <span class="popup__error link-input-error"></span>
+        </label>
+        <button type="submit" class="popup__button">Crear</button>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button"
+        />
+      </form>
     </div>
 
     <div class="popup" id="popup-full-image">
-      <div class="popup__container popup__container_image">
-        <div class="popup__image-container">
-          <img src=" " alt=" " class="popup__image" />
-          <h2 class="popup__image-title"></h2>
-          <button
-            type="button"
-            class="popup__close-button popup__close-button_image"
-            aria-label="Cerrar imagen"
-          >
-            <img src="./images/Close_Icon.svg" alt="" />
-          </button>
-        </div>
+      <div class="popup__image-container">
+        <img src="" alt="" class="popup__image" />
+        <h2 class="popup__image-title"></h2>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button popup__close-button_image"
+        />
       </div>
     </div>
 
-    <div class="popup" id="popup-update-avatar">
-      <div class="popup__container">
-        <form class="popup__form" name="update-avatar" novalidate>
-          <h2 class="popup__title">Cambiar foto de perfil</h2>
-          <label class="popup__field">
-            <input
-              type="url"
-              placeholder="Enlace a la imagen"
-              id="avatar-link"
-              name="avatar-link"
-              class="popup__input popup__input_type_description"
-              required
-            />
-            <span class="popup__error avatar-link-error"></span>
-          </label>
-          <button type="submit" class="popup__button">Guardar</button>
-          <button
-            type="button"
-            class="popup__close-button"
-            aria-label="Cerrar ventana"
-          >
-            <img src="./images/Close_Icon.svg" alt="" />
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <div class="popup" id="popup-confirmation">
-      <div class="popup__container">
-        <form class="popup__form" name="confirmation" novalidate>
-          <h2 class="popup__title">¿Estás seguro?</h2>
-          <p class="popup__text">Esta acción no se puede deshacer.</p>
-          <button type="submit" class="popup__button">Sí</button>
-          <button
-            type="button"
-            class="popup__close-button"
-            aria-label="Cerrar ventana"
-          >
-            <img src="./images/Close_Icon.svg" alt="" />
-          </button>
-        </form>
-      </div>
+    <div class="popup" id="popup-delete-post" name="delete-post">
+      <form class="popup__form">
+        <h2 class="popup__title">¿Estás seguro?</h2>
+        <button type="submit" class="popup__button">Sí</button>
+        <img
+          src="./images/Close_Icon.svg"
+          alt="Icono para cerrar la ventana emergente"
+          class="popup__close-button"
+        />
+      </form>
     </div>
 
     <template id="element-template">
       <article class="element">
         <img src="" alt="" class="element__image" />
-        <button
-          type="button"
+        <img
+          src="./images/Trash.svg"
+          alt="Icono para eliminar post"
           class="element__trash"
-          aria-label="Eliminar tarjeta"
-        >
-          <img src="./images/Trash.svg" alt="" />
-        </button>
+        />
         <div class="element__info">
           <p class="element__name"></p>
-          <div class="element__like-container">
-            <button
-              type="button"
-              class="element__like"
-              aria-label="Dar me gusta"
-            ></button>
-            <span class="element__like-count">0</span>
-          </div>
+          <button type="button" class="element__like"></button>
         </div>
       </article>
     </template>
 
-    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./page/index.js"></script>
   </body>
 </html>

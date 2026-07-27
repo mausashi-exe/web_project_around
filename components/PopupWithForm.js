@@ -1,51 +1,42 @@
-import Popup from './Popup.js';
+import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-
-    this._submitButton = this._popup.querySelector(".popup__button");
+    this._formElement = this._popup.querySelector(".popup__form");
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(".popup__input"),
+    );
+    this._submitButton = this._formElement.querySelector(".popup__button");
     this._initialButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
-    var popupFormValues
-    if (this._popup.querySelector(".popup__input_type_name")) {
-      popupFormValues = {
-      name: this._popup.querySelector(".popup__input_type_name").value,
-      link: this._popup.querySelector(".popup__input_type_description").value,
-      about: this._popup.querySelector(".popup__input_type_description").value,
-      avatar: this._popup.querySelector(".popup__input_type_description").value
-    };
-    } else {
-      popupFormValues = {
-      link: this._popup.querySelector(".popup__input_type_description").value,
-      about: this._popup.querySelector(".popup__input_type_description").value,
-      avatar: this._popup.querySelector(".popup__input_type_description").value
-      };
-    }
-    return popupFormValues;
+    const formValues = {};
+    this._inputList.forEach((input) => {
+      formValues[input.name] = input.value;
+    });
+    return formValues;
   }
 
-  setInputValues(type, {name, about, avatar}) {
-    if(type === "Profile Info") {
-      this._popup.querySelector(".popup__input_type_name").value = name;
-      this._popup.querySelector(".popup__input_type_description").value = about;
-    } else {
-      this._popup.querySelector("#profile-picture-input").value = avatar;
-    }
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      if (data[input.name] !== undefined) {
+        input.value = data[input.name];
+      }
+    });
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popup.querySelector(".popup__form").addEventListener("submit", (evt) => {
+    this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
     });
   }
 
-  renderLoading(isLoading, loadingText) {
+  renderLoading(isLoading, loadingText = "Guardando...") {
     if (isLoading) {
       this._submitButton.textContent = loadingText;
     } else {
@@ -55,7 +46,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._popup.querySelector(".popup__form").reset();
+    this._formElement.reset();
   }
-
 }

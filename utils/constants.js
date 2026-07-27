@@ -6,9 +6,11 @@ const configFormValidation = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
+
 const serverBaseUrl = "https://around-api.es.tripleten-services.com/v1";
+
 const serverRequestHeaders = {
-  authorization: "b4b4617b-f69c-4e5f-b01f-69dbca101938",
+  authorization: "2eb8bf25-039d-4d58-8ca1-0465058366bf",
   "Content-Type": "application/json",
 };
 

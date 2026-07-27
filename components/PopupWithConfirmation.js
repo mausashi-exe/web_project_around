@@ -1,4 +1,4 @@
-import Popup from './Popup.js';
+import Popup from "./Popup.js";
 
 export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector, handleConfirmationSubmit) {
@@ -11,13 +11,15 @@ export default class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._popup.querySelector(".popup__form").addEventListener("submit", (e) => {
-      e.preventDefault();
-      this._handleConfirmationSubmit(this._postData);
-    });
+    this._popup
+      .querySelector(".popup__form")
+      .addEventListener("submit", (e) => {
+        e.preventDefault();
+        this._handleConfirmationSubmit(this._postData);
+      });
   }
 
-  renderLoading(isLoading, loadingText) {
+  renderLoading(isLoading, loadingText = "Eliminando...") {
     if (isLoading) {
       this._submitButton.textContent = loadingText;
     } else {

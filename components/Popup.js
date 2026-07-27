@@ -17,11 +17,14 @@ export default class Popup {
     if (evt.key === "Escape") {
       this.close();
     }
-  }
+  };
 
   setEventListeners() {
     this._popup.addEventListener("click", (evt) => {
-      if (evt.target.classList.contains("popup_open") || evt.target.classList.contains("popup__close-button")) {
+      if (
+        evt.target.classList.contains("popup_open") ||
+        evt.target.classList.contains("popup__close-button")
+      ) {
         this.close();
       }
     });
