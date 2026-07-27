@@ -13,8 +13,8 @@
       content="red social, fotos, paisajes, like, viajes, aplicacion"
     />
     <title>Around the U.S.</title>
-    <link rel="stylesheet" href="pages/index.css" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
   </head>
   <body class="background">
     <div class="page">
@@ -27,11 +27,16 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="./images/Mauricio_Olvera_profilePicture.avif"
-            alt="Foto de perfil del usuario Mauricio Olvera"
-            class="profile__image"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="./images/Mauricio_Olvera_profilePicture.avif"
+              alt="Foto de perfil del usuario"
+              class="profile__image"
+            />
+            <div class="profile__avatar-overlay">
+              <img src="./images/Edit_Icon.svg" alt="Editar avatar" />
+            </div>
+          </div>
           <div class="profile__info">
             <div class="profile__info-group">
               <h1 class="profile__name">Mauricio Olvera</h1>
@@ -57,9 +62,7 @@
             />
           </button>
         </section>
-        <section class="elements">
-          <!-- Las tarjetas se renderizarán aquí con JavaScript -->
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&#169; 2025 Around The U.S.</p>
@@ -167,6 +170,52 @@
       </div>
     </div>
 
+    <!-- Popup: Actualizar Avatar -->
+    <div class="popup" id="popup-update-avatar">
+      <div class="popup__container">
+        <form class="popup__form" name="update-avatar" novalidate>
+          <h2 class="popup__title">Cambiar foto de perfil</h2>
+          <label class="popup__field">
+            <input
+              type="url"
+              placeholder="Enlace a la imagen"
+              id="avatar-link"
+              name="avatar-link"
+              class="popup__input popup__input_type_description"
+              required
+            />
+            <span class="popup__error avatar-link-error"></span>
+          </label>
+          <button type="submit" class="popup__button">Guardar</button>
+          <button
+            type="button"
+            class="popup__close-button"
+            aria-label="Cerrar ventana"
+          >
+            <img src="./images/Close_Icon.svg" alt="" />
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Popup: Confirmación Eliminar -->
+    <div class="popup" id="popup-confirmation">
+      <div class="popup__container">
+        <form class="popup__form" name="confirmation" novalidate>
+          <h2 class="popup__title">¿Estás seguro?</h2>
+          <p class="popup__text">Esta acción no se puede deshacer.</p>
+          <button type="submit" class="popup__button">Sí</button>
+          <button
+            type="button"
+            class="popup__close-button"
+            aria-label="Cerrar ventana"
+          >
+            <img src="./images/Close_Icon.svg" alt="" />
+          </button>
+        </form>
+      </div>
+    </div>
+
     <!-- Template para Tarjetas -->
     <template id="element-template">
       <article class="element">
@@ -180,11 +229,14 @@
         </button>
         <div class="element__info">
           <p class="element__name"></p>
-          <button
-            type="button"
-            class="element__like"
-            aria-label="Dar me gusta"
-          ></button>
+          <div class="element__like-container">
+            <button
+              type="button"
+              class="element__like"
+              aria-label="Dar me gusta"
+            ></button>
+            <span class="element__like-count">0</span>
+          </div>
         </div>
       </article>
     </template>

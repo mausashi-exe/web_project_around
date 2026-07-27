@@ -7,6 +7,7 @@ class PopupWithForm extends Popup {
     this._formElement = this._popupElement.querySelector(".popup__form");
     this._inputList = this._formElement.querySelectorAll(".popup__input");
     this._submitButton = this._formElement.querySelector(".popup__button");
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -28,6 +29,22 @@ class PopupWithForm extends Popup {
   close() {
     super.close();
     this._formElement.reset();
+  }
+
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      if (data[input.name] !== undefined) {
+        input.value = data[input.name];
+      }
+    });
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = "Guardando...";
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 }
 
