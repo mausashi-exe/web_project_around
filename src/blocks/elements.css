@@ -1,12 +1,92 @@
-.elements {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-  grid-auto-rows: auto;
-  gap: 20px 17px;
+.element {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: var(--border-radius-default, 10px);
+  color: #000000;
+  overflow: hidden;
+  transition: transform var(--transition-default);
 }
 
-@media screen and (max-width: 320px) {
-  .elements {
-    grid-template-columns: 1fr;
-  }
+.element:hover {
+  transform: scale(var(--scale-hover, 1.05));
+}
+
+.element__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--border-radius-default, 10px)
+    var(--border-radius-default, 10px) 0 0;
+  cursor: pointer;
+}
+
+.element__trash {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 18px;
+  height: 19.3px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity var(--transition-default);
+}
+
+.element__trash:hover {
+  opacity: var(--opacity-hover, 0.6);
+}
+
+.element__info {
+  margin: 25px 15px 31px 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.element__name {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
+}
+
+.element__like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.element__like {
+  padding: 0;
+  min-width: 21px;
+  height: 19px;
+  background: transparent url("../images/Like_Icon.svg") no-repeat center;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition-default);
+  flex-shrink: 0;
+}
+
+.element__like:hover {
+  opacity: var(--opacity-hover, 0.6);
+}
+
+.element__like_active {
+  background-image: url("../images/Liked_Icon.svg");
+}
+
+.element__like-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1;
 }

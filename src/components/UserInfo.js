@@ -22,6 +22,7 @@ class UserInfo {
     }
     if (avatar) {
       this._avatarElement.src = avatar;
+      this._avatarElement.alt = `Foto de perfil del usuario ${name}`;
     }
   }
 

@@ -1,11 +1,11 @@
-import { Api } from "../components/Api.js";
-import { Card } from "../components/Card.js";
-import { FormValidator } from "../components/FormValidator.js";
-import { Section } from "../components/Section.js";
-import { PopupWithImage } from "../components/PopupWithImage.js";
-import { PopupWithForm } from "../components/PopupWithForm.js";
-import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
-import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "./Api.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import { Section } from "./Section.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+import { PopupWithForm } from "./PopupWithForm.js";
+import { PopupWithConfirmation } from "./PopupWithConfirmation.js";
+import { UserInfo } from "./UserInfo.js";
 
 const configFormValidation = {
   formSelector: ".popup__form",
@@ -16,7 +16,6 @@ const configFormValidation = {
   errorClass: "popup__error_visible",
 };
 
-//  token
 const api = new Api({
   baseUrl: "https://around-api.es.tripleten-services.com/v1",
   headers: {
