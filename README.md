@@ -1,47 +1,19 @@
-# Around the U.S. - Proyecto 8
+Alrededor de los Estados Unidos (Proyecto 12)
 
-## 📋 Descripción
+Proyecto web interactivo desarrollado durante el Sprint 9 de TripleTen. La aplicación conecta la interfaz con una API REST externa para sincronizar datos de usuario, renderizar tarjetas dinámicamente y gestionar interacciones en tiempo real.
 
-Aplicación web interactiva que permite a los usuarios crear y gestionar una galería de lugares visitados en Estados Unidos. Los usuarios pueden agregar nuevas tarjetas con imágenes y descripciones, dar "me gusta" a publicaciones y eliminar contenido.
+Funcionalidades
 
-## 🚀 Funcionalidades
+- **Carga Dinámica desde Servidor:** Obtención de perfil e imágenes iniciales mediante `Promise.all` e integración con API.
+- **Edición de Perfil y Avatar:** Actualización de datos del usuario y foto de perfil enviando solicitudes `PATCH` al servidor.
+- **Gestión de Tarjetas:** Creación (`POST`) y eliminación (`DELETE`) de publicaciones con popup de confirmación.
+- **Sistema de Likes:** Dar y quitar "me gusta" a las publicaciones en tiempo real (`PUT` / `DELETE`).
+- **Mejoras UX:** Animación e indicador visual ("Guardando...", "Creando...", "Eliminando...") en botones durante solicitudes asíncronas.
+- **Programación Orientada a Objetos:** Módulos ES6 desacoplados (`Api`, `Card`, `Section`, `Popup`, `PopupWithForm`, `PopupWithImage`, `PopupWithConfirmation`, `UserInfo`, `FormValidator`).
 
-- **6 tarjetas iniciales** cargadas automáticamente
-- **Formulario para agregar nuevas tarjetas** con validación
-- **Sistema de "me gusta"** (like/unlike)
-- **Eliminación de tarjetas** con confirmación visual
-- **Ventana modal para imágenes ampliadas**
-- **Edición de perfil del usuario**
-- **Validación de formularios** en tiempo real
-- **Interfaz completamente responsiva**
+Tecnologías y Técnicas Utilizadas
 
-## 🛠️ Tecnologías utilizadas
-
-- **HTML5** - Estructura semántica
-- **CSS3** - Flexbox, Grid, Media Queries
-- **JavaScript (ES6+)** - Programación orientada a objetos
-- **Metodología BEM** - Organización de CSS
-- **Modulos ES6** - Organización de código JavaScript
-- **Git** - Control de versiones
-
-## 🎨 Características técnicas
-
-- **Arquitectura modular** con clases ES6
-- **Validación de formularios** personalizada
-- **Manejo de eventos** eficiente
-- **Popup modales** con cierre múltiple (click fuera, ESC, botón X)
-- **Diseño responsivo** para todos los dispositivos
-- **Accesibilidad** (ARIA labels, teclado navegable)
-
-## 📸 Capturas de pantalla
-
-![Vista principal del proyecto](./images/screenshot-main.png)
-![Formulario para agregar tarjetas](./images/screenshot-form.png)
-![Imagen ampliada en modal](./images/screenshot-modal.png)
-
-## 🔗 Enlaces
-
-- **Repositorio GitHub:** [https://github.com/mausashi-exe/web_project_around](https://github.com/mausashi-exe/web_project_around)
-- **GitHub Pages:** [https://mausashi-exe.github.io/web_project_around/](https://mausashi-exe.github.io/web_project_around/)
-
-## 📁 Estructura del proyecto
+- HTML5 Semántico
+- CSS3 (Metodología BEM, Flexbox, Grid, Responsive Design)
+- JavaScript ES6+ (Fetch API, Promises, Clases, Módulos)
+- Programación Orientada a Objetos (POO)
